@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="dollar_name">USD</string>
+    <string name="europe_name">URO</string>
+    <string name="date">1403/11/3</string>
+    <string name="usd_price">93,850</string>
+    <string name="percent">1.4</string>
+</resources>

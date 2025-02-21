@@ -1,16 +1,10 @@
 # widget_home
 
-A new Flutter project.
+پروژه تمرینی برای نمایش بروز قیمت دلار و یورو 
 
-## Getting Started
+این نسخه منتشر شده نسخه بدون امضا میباشد 
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![alt text](https://github.com/RaminBgrn/home_widget/blob/main/screen_shots/photo_2025-02-21_19-57-29.jpg?row=true)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

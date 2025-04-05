@@ -11,6 +11,7 @@ import android.widget.RemoteViews
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import es.antonborri.home_widget.HomeWidgetPlugin
+import androidx.core.graphics.toColorInt
 
 
 /**
@@ -19,9 +20,9 @@ import es.antonborri.home_widget.HomeWidgetPlugin
 
 data class CurrencyInfo(
     val symbol: String = "null",
-    val price: String = "null",
+    val buy: String = "null",
     val date: String = "null",
-    val changePercent: Double = 0.0
+    val sell: String = "null"
 )
 
 
@@ -50,24 +51,17 @@ class DollarPrice : AppWidgetProvider() {
                 val uroDate =
                     currencyList.find { it.symbol == "EUR" } ?: CurrencyInfo(symbol = "EUR")
                 val views = RemoteViews(context.packageName, R.layout.dollar_price)
-
-                if(usdDate.changePercent > 0){
-                    views.setTextColor(R.id.txt_usd_percent , Color.parseColor("#f44336"))
-                }else{
-                    views.setTextColor(R.id.txt_usd_percent , Color.parseColor("#4eae47"))
-                }
-                if(uroDate.changePercent > 0){
-                    views.setTextColor(R.id.txt_euro_percent , Color.parseColor("#f44336"))
-                }else{
-                    views.setTextColor(R.id.txt_euro_percent , Color.parseColor("#4eae47"))
-                }
+                views.setTextColor(R.id.txt_usd_buy ,  "#86fc8a".toColorInt())
+                views.setTextColor(R.id.txt_usd_sell ,"#f04f43".toColorInt() )
+                views.setTextColor(R.id.txt_euro_buy , "#86fc8a".toColorInt())
+                views.setTextColor(R.id.txt_euro_sell , "#f04f43".toColorInt())
                 views.setTextViewText(R.id.txt_dollar, "USD")
                 views.setTextViewText(R.id.txt_euro, "EUR")
                 views.setTextViewText(R.id.txt_usd_date, usdDate.date)
-                views.setTextViewText(R.id.txt_usd_price, usdDate.price)
-                views.setTextViewText(R.id.txt_usd_percent, usdDate.changePercent.toString())
-                views.setTextViewText(R.id.txt_euro_price, uroDate.price)
-                views.setTextViewText(R.id.txt_euro_percent, uroDate.changePercent.toString())
+                views.setTextViewText(R.id.txt_usd_buy, usdDate.buy)
+                views.setTextViewText(R.id.txt_usd_sell, usdDate.sell)
+                views.setTextViewText(R.id.txt_euro_buy, uroDate.buy)
+                views.setTextViewText(R.id.txt_euro_sell, uroDate.sell)
                 views.setTextViewText(R.id.txt_date_euro, uroDate.date)
 
                 appWidgetManager.updateAppWidget(appWidgetId, views)
@@ -102,10 +96,10 @@ internal fun updateAppWidget(
     views.setTextViewText(R.id.txt_dollar, "USD")
     views.setTextViewText(R.id.txt_euro, "URO")
     views.setTextViewText(R.id.txt_usd_date, "1403/11/02")
-    views.setTextViewText(R.id.txt_usd_price, "94,100")
-    views.setTextViewText(R.id.txt_usd_percent, "1.4")
-    views.setTextViewText(R.id.txt_euro_price, "98,200")
-    views.setTextViewText(R.id.txt_euro_percent, "1.8")
+    views.setTextViewText(R.id.txt_usd_buy, "94,100")
+    views.setTextViewText(R.id.txt_usd_sell, "1.4")
+    views.setTextViewText(R.id.txt_euro_buy, "98,200")
+    views.setTextViewText(R.id.txt_euro_sell, "1.8")
     views.setTextViewText(R.id.txt_date_euro, "1403/11/02")
 
     // Instruct the widget manager to update the widget

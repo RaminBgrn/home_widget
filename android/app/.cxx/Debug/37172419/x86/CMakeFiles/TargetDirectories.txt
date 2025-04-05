@@ -1,0 +1,2 @@
+C:/Users/Bagherian/Downloads/weather/home_widget/android/app/.cxx/Debug/37172419/x86/CMakeFiles/edit_cache.dir
+C:/Users/Bagherian/Downloads/weather/home_widget/android/app/.cxx/Debug/37172419/x86/CMakeFiles/rebuild_cache.dir

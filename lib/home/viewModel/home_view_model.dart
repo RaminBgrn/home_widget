@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_widget/home_widget.dart';
@@ -19,21 +18,19 @@ class HomeViewModel extends GetxController {
   HomeViewModel(this.service);
 
   Future<void> getCurrencyPrice() async {
-    final res = await service
-        .getRequest("https://brsapi.ir/FreeTsetmcBourseApi/Api_Free_Gold_Currency_v2.json");
+    final res = await service.getRequest("https://baha24.com/api/v1/price");
 
     if (res != null) {
       Map<String, dynamic> decoded = jsonDecode(res.httpResponse!.body);
       _priceModel.clear();
-      for (final price in decoded['currency']) {
-        if (price['symbol'] == 'USD' || price['symbol'] == 'EUR') {
-          _priceModel.add(PriceModel.fromJson(price));
-        }
-      }
+      _priceModel.add(PriceModel.fromJson(decoded['USD']));
+      _priceModel.add(PriceModel.fromJson(decoded['EUR']));
       _saveAndUpdateWidgetData();
-      UserNotify.showSnackBar('موفقیت آمیز', 'اطلاعات بروزرسانی شد ', Colors.green);
+      UserNotify.showSnackBar(
+          'موفقیت آمیز', 'اطلاعات بروزرسانی شد ', Colors.green);
     } else {
-      UserNotify.showSnackBar('خطا در ارتباط', 'خطایی در هنگام دریافت اطلاعات رخ داد', Colors.red);
+      UserNotify.showSnackBar(
+          'خطا در ارتباط', 'خطایی در هنگام دریافت اطلاعات رخ داد', Colors.red);
     }
   }
 

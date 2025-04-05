@@ -58,6 +58,8 @@
             android:layout_marginEnd="8dp"
             android:gravity="end"
             android:weightSum="3"
+            android:paddingTop="4dp"
+            android:paddingBottom = "4dp"
             tools:ignore="NestedWeights">
 
 
@@ -76,28 +78,28 @@
                 />
 
             <TextView
-                android:id="@+id/txt_euro_price"
+                android:id="@+id/txt_euro_sell"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                tools:text="@string/usd_price"
+                tools:text="@string/usd_sell"
                 android:textFontWeight="900"
                 android:layout_marginStart="10dp"
                 android:gravity="center"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:layout_weight="1"
                 android:textColor="@android:color/white"
                 />
 
             <TextView
-                android:id="@+id/txt_euro_percent"
+                android:id="@+id/txt_euro_buy"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                tools:text="@string/percent"
-                android:textFontWeight="400"
+                tools:text="@string/usd_buy"
+                android:textFontWeight="900"
                 android:layout_marginStart="10dp"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textColor="@android:color/white"
                 />
 
@@ -113,6 +115,7 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="5"
+
         android:layout_marginStart="4dp">
 
         <LinearLayout
@@ -158,6 +161,8 @@
             android:layout_marginEnd="8dp"
             android:gravity="end"
             android:weightSum="3"
+            android:paddingTop="4dp"
+            android:paddingBottom = "4dp"
             tools:ignore="NestedWeights">
 
 
@@ -176,28 +181,28 @@
                 />
 
             <TextView
-                android:id="@+id/txt_usd_price"
+                android:id="@+id/txt_usd_sell"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                tools:text="@string/usd_price"
+                tools:text="@string/usd_sell"
                 android:textFontWeight="900"
                 android:layout_marginStart="10dp"
                 android:gravity="center"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:layout_weight="1"
                 android:textColor="@android:color/white"
                 />
 
             <TextView
-                android:id="@+id/txt_usd_percent"
+                android:id="@+id/txt_usd_buy"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                tools:text="@string/percent"
-                android:textFontWeight="400"
+                tools:text="@string/usd_buy"
+                android:textFontWeight="900"
                 android:layout_marginStart="10dp"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textColor="@android:color/white"
                 />
 

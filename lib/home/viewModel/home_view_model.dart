@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:widget_home/common/user_notify.dart';
+import 'package:widget_home/core/constants/urls.dart';
 import 'package:widget_home/home/model/price_model.dart';
 import 'package:widget_home/service/request_service.dart';
 
@@ -18,7 +19,7 @@ class HomeViewModel extends GetxController {
   HomeViewModel(this.service);
 
   Future<void> getCurrencyPrice() async {
-    final res = await service.getRequest("https://baha24.com/api/v1/price");
+    final res = await service.getRequest(Urls.baseUrl);
 
     if (res != null) {
       Map<String, dynamic> decoded = jsonDecode(res.httpResponse!.body);
@@ -41,11 +42,13 @@ class HomeViewModel extends GetxController {
     }
     await HomeWidget.saveWidgetData("CurrencyData", listRawData.toString());
     await HomeWidget.updateWidget(androidName: _androidWidgetName);
+    update();
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     HomeWidget.setAppGroupId(_appGroupId);
+    await getCurrencyPrice();
     super.onInit();
   }
 }

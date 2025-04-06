@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:widget_home/home/model/price_model.dart';
 import 'package:widget_home/home/viewModel/home_view_model.dart';
+import 'package:widget_home/home/widgets/main_cart_item.dart';
 
 class HomeScreen extends GetView<HomeViewModel> {
   const HomeScreen({super.key});
@@ -29,6 +31,39 @@ class HomeScreen extends GetView<HomeViewModel> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            GetBuilder<HomeViewModel>(builder: (ctl) {
+              return Row(
+                children: [
+                  Expanded(
+                    child: MainCartItem(
+                      model: () {
+                        if (ctl.getPriceModel.isEmpty) {
+                          return PriceModel();
+                        } else {
+                          return ctl.getPriceModel.singleWhere(
+                              (currency) => currency.symbolName == "EUR");
+                        }
+                      }(),
+                      image: 'assets/images/euro.png',
+                      title: 'EUR',
+                    ),
+                  ),
+                  Expanded(
+                      child: MainCartItem(
+                    model: () {
+                      if (ctl.getPriceModel.isEmpty) {
+                        return PriceModel();
+                      } else {
+                        return ctl.getPriceModel.singleWhere(
+                            (currency) => currency.symbolName == "USD");
+                      }
+                    }(),
+                    image: 'assets/images/usa.png',
+                    title: 'USD',
+                  )),
+                ],
+              );
+            }),
             ElevatedButton(
                 onPressed: () {
                   controller.getCurrencyPrice();

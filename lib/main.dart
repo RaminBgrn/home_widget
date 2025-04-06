@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:widget_home/core/viw_model_binding.dart';
+import 'package:widget_home/core/binding/viw_model_binding.dart';
 import 'package:widget_home/home/home_screen.dart';
 
 void main() {

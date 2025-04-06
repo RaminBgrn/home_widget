@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_widget/home_widget.dart';
-import 'package:widget_home/common/user_notify.dart';
+import 'package:widget_home/core/common/user_notify.dart';
 import 'package:widget_home/core/constants/urls.dart';
 import 'package:widget_home/home/model/price_model.dart';
 import 'package:widget_home/service/request_service.dart';
@@ -26,12 +27,17 @@ class HomeViewModel extends GetxController {
       _priceModel.clear();
       _priceModel.add(PriceModel.fromJson(decoded['USD']));
       _priceModel.add(PriceModel.fromJson(decoded['EUR']));
+      // _priceModel.add(PriceModel.fromJson(decoded));
+      // for (int i = 0; i < decoded.length; i++) {
+      //   _priceModel.add(PriceModel.fromJson(decoded[i]));
+      // }
+      log(decoded.length.toString());
       _saveAndUpdateWidgetData();
       UserNotify.showSnackBar(
-          'موفقیت آمیز', 'اطلاعات بروزرسانی شد ', Colors.green);
+          'موفقیت آمیز', 'اطلاعات بروزرسانی شد ', Colors.green, Colors.white);
     } else {
-      UserNotify.showSnackBar(
-          'خطا در ارتباط', 'خطایی در هنگام دریافت اطلاعات رخ داد', Colors.red);
+      UserNotify.showSnackBar('خطا در ارتباط',
+          'خطایی در هنگام دریافت اطلاعات رخ داد', Colors.red, Colors.white);
     }
   }
 

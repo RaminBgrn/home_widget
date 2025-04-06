@@ -16,7 +16,7 @@ class MainCartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 120,
-      margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
@@ -36,8 +36,8 @@ class MainCartItem extends StatelessWidget {
             children: [
               Image.asset(
                 image,
-                width: 50,
-                height: 50,
+                width: 46,
+                height: 46,
               ),
               Text(
                 title,

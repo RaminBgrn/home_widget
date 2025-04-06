@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UserNotify {
-  static void showSnackBar(String title, String message, Color primaryColor) {
+  static void showSnackBar(
+      String title, String message, Color primaryColor, Color backgroundColor) {
     Get.snackbar('', '',
         titleText: Text(
           title,
@@ -23,11 +24,9 @@ class UserNotify {
             color: Colors.black54,
           ),
         ),
-        backgroundColor: primaryColor.withValues(
-          alpha: 0.2,
-        ),
+        backgroundColor: backgroundColor,
         borderColor: primaryColor,
         borderWidth: 1,
-        snackPosition: SnackPosition.BOTTOM);
+        snackPosition: SnackPosition.TOP);
   }
 }

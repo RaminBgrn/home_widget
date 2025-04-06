@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:widget_home/home/model/price_model.dart';
 import 'package:widget_home/home/viewModel/home_view_model.dart';
+import 'package:widget_home/home/widgets/crypto_currency_cart.dart';
 import 'package:widget_home/home/widgets/main_cart_item.dart';
 
 class HomeScreen extends GetView<HomeViewModel> {
@@ -17,11 +18,17 @@ class HomeScreen extends GetView<HomeViewModel> {
         title: Text(
           'قیمت دلار',
           style: GoogleFonts.vazirmatn(
-            fontSize: 18,
+            fontSize: 28,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          controller.getCurrencyPrice();
+        },
+        child: Icon(Icons.refresh),
       ),
       body: SizedBox(
         width: MediaQuery.sizeOf(context).width,
@@ -64,18 +71,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                 ],
               );
             }),
-            ElevatedButton(
-                onPressed: () {
-                  controller.getCurrencyPrice();
-                },
-                child: Text(
-                  'بروزرسانی',
-                  style: GoogleFonts.vazirmatn(
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black,
-                  ),
-                ))
+            CryptoCurrencyCart(),
           ],
         ),
       ),

@@ -62,18 +62,25 @@ class MainCartItem extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 Text(
-                  model.sell ?? 'null',
+                  model.price ?? 'null',
                   style: GoogleFonts.vazirmatn(
                       fontSize: 24,
-                      color: Colors.red.shade500,
+                      color: Colors.black87,
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  model.buy ?? 'null',
+                  model.changePercent.toString(),
                   style: GoogleFonts.vazirmatn(
-                      fontSize: 18,
-                      color: Colors.green.shade500,
-                      fontWeight: FontWeight.bold),
+                      fontSize: 14,
+                      color: () {
+                        if (model.changePercent == null) {
+                          return Colors.grey;
+                        }
+                        return model.changePercent! > 0
+                            ? Colors.red.shade500
+                            : Colors.green.shade500;
+                      }(),
+                      fontWeight: FontWeight.normal),
                 ),
               ],
             ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:widget_home/core/common/user_notify.dart';
+import 'package:widget_home/core/constants/api_keys.dart';
 import 'package:widget_home/core/constants/urls.dart';
 import 'package:widget_home/home/model/price_model.dart';
 import 'package:widget_home/service/request_service.dart';
@@ -20,17 +21,16 @@ class HomeViewModel extends GetxController {
   HomeViewModel(this.service);
 
   Future<void> getCurrencyPrice() async {
-    final res = await service.getRequest(Urls.baseUrl);
+    final String url = Urls.baseUrl + await ApiKeys.getApiKey();
+    final res = await service.getRequest(url);
 
     if (res != null) {
       Map<String, dynamic> decoded = jsonDecode(res.httpResponse!.body);
       _priceModel.clear();
-      _priceModel.add(PriceModel.fromJson(decoded['USD']));
-      _priceModel.add(PriceModel.fromJson(decoded['EUR']));
-      // _priceModel.add(PriceModel.fromJson(decoded));
-      // for (int i = 0; i < decoded.length; i++) {
-      //   _priceModel.add(PriceModel.fromJson(decoded[i]));
-      // }
+      log(decoded.toString());
+      for (int index = 0; index < decoded['currency'].length; index++) {
+        _priceModel.add(PriceModel.fromJson(decoded['currency'][index]));
+      }
       log(decoded.length.toString());
       _saveAndUpdateWidgetData();
       UserNotify.showSnackBar(
@@ -44,7 +44,9 @@ class HomeViewModel extends GetxController {
   Future<void> _saveAndUpdateWidgetData() async {
     List<String> listRawData = [];
     for (final model in _priceModel) {
-      listRawData.add(jsonEncode(model.toJson(model)));
+      if (model.symbolName == "USD" || model.symbolName == "EUR") {
+        listRawData.add(jsonEncode(model.toJson(model)));
+      }
     }
     await HomeWidget.saveWidgetData("CurrencyData", listRawData.toString());
     await HomeWidget.updateWidget(androidName: _androidWidgetName);

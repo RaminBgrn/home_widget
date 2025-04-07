@@ -2,31 +2,32 @@ import "package:intl/intl.dart" as intl;
 
 class PriceModel {
   String? symbolName;
-  String? buy;
-  String? sell;
+  String? price;
+  double? changePercent;
   String? date;
 
   PriceModel({
     this.symbolName,
-    this.buy,
-    this.sell,
+    this.price,
+    this.changePercent,
     this.date,
   });
 
   PriceModel.fromJson(Map<String, dynamic> json) {
     final form = intl.NumberFormat("#,##0", "en_US");
     symbolName = json['symbol'];
-    buy = form.format(json['buy']);
-    sell = form.format(json['sell']);
-    date =
-        json['last_update'].toString().split(' ').first.replaceAll(r'-', ' ');
+    price = form.format(json['price']);
+    changePercent = json['change_percent'] == 0
+        ? double.tryParse(json['change_percent'])
+        : json['change_percent'];
+    date = json['date'];
   }
 
   Map<String, dynamic> toJson(PriceModel model) {
     return {
       'symbol': model.symbolName,
-      'buy': model.buy,
-      'sell': model.sell,
+      'price': model.price,
+      'changePercent': model.changePercent,
       'date': model.date,
     };
   }

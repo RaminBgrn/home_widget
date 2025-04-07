@@ -1,3 +1,4 @@
 class Urls {
-  static const String baseUrl = "https://baha24.com/api/v1/price";
+  static const String baseUrl =
+      "https://brsapi.ir/Api/Market/Gold_Currency.php?key=";
 }

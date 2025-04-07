@@ -76,7 +76,7 @@
                 />
 
             <TextView
-                android:id="@+id/txt_euro_sell"
+                android:id="@+id/txt_euro_price"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 tools:text="@string/usd_sell"
@@ -89,7 +89,7 @@
                 />
 
             <TextView
-                android:id="@+id/txt_euro_buy"
+                android:id="@+id/txt_euro_change_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -176,7 +176,7 @@
                 />
 
             <TextView
-                android:id="@+id/txt_usd_sell"
+                android:id="@+id/txt_usd_price"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 tools:text="@string/usd_sell"
@@ -189,7 +189,7 @@
                 />
 
             <TextView
-                android:id="@+id/txt_usd_buy"
+                android:id="@+id/txt_usd_change_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:widget_home/home/model/price_model.dart';
+import 'package:widget_home/home/model/currency_model.dart';
 import 'package:widget_home/home/viewModel/home_view_model.dart';
 import 'package:widget_home/home/widgets/crypto_currency_cart.dart';
 import 'package:widget_home/home/widgets/main_cart_item.dart';
@@ -45,7 +45,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                     child: MainCartItem(
                       model: () {
                         if (ctl.getPriceModel.isEmpty) {
-                          return PriceModel();
+                          return CurrencyModel();
                         } else {
                           return ctl.getPriceModel.singleWhere(
                               (currency) => currency.symbolName == "EUR");
@@ -59,7 +59,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                       child: MainCartItem(
                     model: () {
                       if (ctl.getPriceModel.isEmpty) {
-                        return PriceModel();
+                        return CurrencyModel();
                       } else {
                         return ctl.getPriceModel.singleWhere(
                             (currency) => currency.symbolName == "USD");

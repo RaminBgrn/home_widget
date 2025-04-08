@@ -5,15 +5,21 @@ import 'package:get/get.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:widget_home/core/common/user_notify.dart';
 import 'package:widget_home/core/constants/api_keys.dart';
+import 'package:widget_home/core/constants/crypto_currency_image_map.dart';
 import 'package:widget_home/core/constants/urls.dart';
-import 'package:widget_home/home/model/price_model.dart';
+import 'package:widget_home/home/model/crypto_currency_model.dart';
+import 'package:widget_home/home/model/currency_model.dart';
 import 'package:widget_home/service/request_service.dart';
 
 class HomeViewModel extends GetxController {
   final RequestService service;
 
-  final List<PriceModel> _priceModel = [];
-  List<PriceModel> get getPriceModel => _priceModel;
+  // currency list model
+  final List<CurrencyModel> _priceModel = [];
+  List<CurrencyModel> get getPriceModel => _priceModel;
+  // crypto currency model
+  final List<CryptoCurrencyModel> _cryptoCurrencyModel = [];
+  List<CryptoCurrencyModel> get getCryptoCurrencyModel => _cryptoCurrencyModel;
 
   final String _appGroupId = "group.currencyPriceApp";
   final String _androidWidgetName = "DollarPrice";
@@ -27,11 +33,27 @@ class HomeViewModel extends GetxController {
     if (res != null) {
       Map<String, dynamic> decoded = jsonDecode(res.httpResponse!.body);
       _priceModel.clear();
-      log(decoded.toString());
+      _cryptoCurrencyModel.clear();
       for (int index = 0; index < decoded['currency'].length; index++) {
-        _priceModel.add(PriceModel.fromJson(decoded['currency'][index]));
+        _priceModel.add(CurrencyModel.fromJson(decoded['currency'][index]));
       }
-      log(decoded.length.toString());
+      for (int index = 0; index < decoded['cryptocurrency'].length; index++) {
+        bool isExsits = CryptoCurrencyImageMap.imageCrypto(
+                decoded['cryptocurrency'][index]['symbol']
+                    .toString()
+                    .toLowerCase())
+            .isValid;
+        String imagePath = CryptoCurrencyImageMap.imageCrypto(
+                decoded['cryptocurrency'][index]['symbol']
+                    .toString()
+                    .toLowerCase())
+            .value;
+        if (isExsits) {
+          _cryptoCurrencyModel.add(CryptoCurrencyModel.fromJson(
+              decoded['cryptocurrency'][index], imagePath));
+        }
+      }
+      log(_cryptoCurrencyModel.length.toString());
       _saveAndUpdateWidgetData();
       UserNotify.showSnackBar(
           'موفقیت آمیز', 'اطلاعات بروزرسانی شد ', Colors.green, Colors.white);

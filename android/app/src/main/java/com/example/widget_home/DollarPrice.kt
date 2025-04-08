@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
-import android.graphics.Color
 import android.util.Log
 import android.widget.RemoteViews
 import com.google.gson.Gson

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:widget_home/home/model/price_model.dart';
+import 'package:widget_home/home/model/currency_model.dart';
 
 class MainCartItem extends StatelessWidget {
-  final PriceModel model;
+  final CurrencyModel model;
   final String image;
   final String title;
   const MainCartItem(

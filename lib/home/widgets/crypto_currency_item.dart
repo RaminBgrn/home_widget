@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:widget_home/home/model/crypto_currency_model.dart';
 
 class CryptoCurrencyItem extends StatelessWidget {
-  const CryptoCurrencyItem({super.key});
+  final CryptoCurrencyModel model;
+  const CryptoCurrencyItem({required this.model, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,31 +13,44 @@ class CryptoCurrencyItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        Gap(12),
         Image.asset(
-          'assets/images/usa.png',
-          width: 20,
-          height: 20,
+          model.image!,
+          width: 30,
+          height: 30,
+          fit: BoxFit.cover,
         ),
-        Text(
-          'CHF',
-          style: GoogleFonts.vazirmatn(
-            fontSize: 16,
-            color: Colors.black54,
-            fontWeight: FontWeight.w600,
+        Gap(8),
+        Expanded(
+          flex: 2,
+          child: Text(
+            model.title!,
+            style: GoogleFonts.vazirmatn(
+              fontSize: 16,
+              color: Colors.black54,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
-        Text(
-          '103,800',
-          style: GoogleFonts.vazirmatn(
-            fontSize: 16,
-            color: Colors.red.shade400,
+        Expanded(
+          flex: 4,
+          child: Text(
+            model.price!,
+            style: GoogleFonts.vazirmatn(
+              fontSize: 16,
+              color: Colors.red.shade400,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-        Text(
-          '82,240',
-          style: GoogleFonts.vazirmatn(
-            fontSize: 16,
-            color: Colors.green.shade400,
+        Expanded(
+          flex: 2,
+          child: Text(
+            model.changePercent.toString(),
+            style: GoogleFonts.vazirmatn(
+              fontSize: 16,
+              color: Colors.green.shade400,
+            ),
           ),
         ),
       ],

@@ -41,6 +41,7 @@ dependencies:
   intl: ^0.20.2
   shared_preferences: ^2.5.2
   flutter_dotenv: ^5.2.1
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:widget_home/home/viewModel/home_view_model.dart';
 import 'package:widget_home/home/widgets/crypto_currency_item.dart';
 
 class CryptoCurrencyCart extends StatelessWidget {
@@ -22,17 +24,14 @@ class CryptoCurrencyCart extends StatelessWidget {
               blurRadius: 12,
             )
           ]),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          CryptoCurrencyItem(),
-          CryptoCurrencyItem(),
-          CryptoCurrencyItem(),
-          CryptoCurrencyItem(),
-          CryptoCurrencyItem(),
-          CryptoCurrencyItem(),
-        ],
-      ),
+      child: GetBuilder<HomeViewModel>(builder: (ctl) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: List.generate(ctl.getCryptoCurrencyModel.length, (index) {
+            return CryptoCurrencyItem(model: ctl.getCryptoCurrencyModel[index]);
+          }),
+        );
+      }),
     );
   }
 }

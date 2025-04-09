@@ -1,0 +1,1 @@
+-keepclassmembers class com.example.widget_home.home.** {*;}

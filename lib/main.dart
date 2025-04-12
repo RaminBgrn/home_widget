@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         badgeTheme: BadgeThemeData(),
         useMaterial3: true,
       ),
+      enableLog: true,
       initialBinding: ViewModelBinding(),
       home: const HomeScreen(),
     );

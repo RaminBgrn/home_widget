@@ -49,7 +49,9 @@ class CryptoCurrencyItem extends StatelessWidget {
             model.changePercent.toString(),
             style: GoogleFonts.vazirmatn(
               fontSize: 16,
-              color: Colors.green.shade400,
+              color: model.changePercent! > 0
+                  ? Colors.green.shade400
+                  : Colors.red.shade400,
             ),
           ),
         ),

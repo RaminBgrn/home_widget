@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:widget_home/home/model/currency_model.dart';
@@ -72,6 +73,16 @@ class HomeScreen extends GetView<HomeViewModel> {
               );
             }),
             CryptoCurrencyCart(),
+            Gap(8),
+            ElevatedButton(
+                onPressed: () {
+                  if (Theme.of(context).brightness == Brightness.dark) {
+                    Get.changeTheme(ThemeData.light());
+                  } else {
+                    Get.changeTheme(ThemeData.dark());
+                  }
+                },
+                child: Text('Theme '))
           ],
         ),
       ),

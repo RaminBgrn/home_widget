@@ -1,1 +1,1 @@
--keepclassmembers class com.example.widget_home.home.** {*;}
+-keep class com.example.widget_home.DollarPrice { *; }

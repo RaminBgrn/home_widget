@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="180dp"
+    android:minHeight="40dp"
+    android:updatePeriodMillis="10000"
+    android:previewImage="@drawable/example_appwidget_preview"
+    android:initialLayout="@layout/dollar_price"
+    android:description="@string/app_widget_description"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:previewLayout="@layout/dollar_price"
+    android:targetCellHeight="1"
+       android:targetCellWidth="3"
+    android:initialKeyguardLayout="@layout/dollar_price"
+/>

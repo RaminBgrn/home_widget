@@ -40,10 +40,10 @@ jobs:
       - name: Run tests
         run: flutter test
 
-      - name: Decode release keystore
+      - name: Decrypt release keystore
         env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-        run: echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: openssl enc -d -aes-256-cbc -pbkdf2 -iter 100000 -in android/release.keystore.enc -out "$RUNNER_TEMP/release.keystore" -pass env:KEYSTORE_PASSWORD
 
       - name: Build release APK
         env:

@@ -5,7 +5,8 @@ class CryptoCurrencyImageMap {
     'eth': 'assets/images/eth.png',
     'shib': 'assets/images/shib.png',
     'trx': 'assets/images/trx.png',
-    'ustd': 'assets/images/ustd.png'
+    'ustd': 'assets/images/ustd.png',
+    'usdt': 'assets/images/ustd.png'
   };
   static ({String value, bool isValid}) imageCrypto(String key) {
     if (_images.containsKey(key)) {

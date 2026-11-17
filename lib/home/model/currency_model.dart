@@ -23,6 +23,21 @@ class CurrencyModel {
     date = json['date'];
   }
 
+  factory CurrencyModel.fromNerkhsanj({
+    required String symbol,
+    required num price,
+    required num? changePercent,
+    String? date,
+  }) {
+    final form = intl.NumberFormat("#,##0", "en_US");
+    return CurrencyModel(
+      symbolName: symbol,
+      price: form.format(price),
+      changePercent: changePercent?.toDouble(),
+      date: date,
+    );
+  }
+
   Map<String, dynamic> toJson(CurrencyModel model) {
     return {
       'symbol': model.symbolName,

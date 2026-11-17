@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:widget_home/core/binding/viw_model_binding.dart';
 import 'package:widget_home/home/home_screen.dart';
 
-void main() async {
-  await dotenv.load(fileName: '.env');
+void main() {
   runApp(const MyApp());
 }
 

@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:widget_home/core/common/user_notify.dart';
-import 'package:widget_home/core/constants/api_keys.dart';
-import 'package:widget_home/core/constants/crypto_currency_image_map.dart';
 import 'package:widget_home/core/constants/urls.dart';
 import 'package:widget_home/home/model/crypto_currency_model.dart';
+import 'package:widget_home/home/model/nerkhsanj_parser.dart';
 import 'package:widget_home/home/model/currency_model.dart';
 import 'package:widget_home/service/request_service.dart';
 
@@ -27,32 +26,14 @@ class HomeViewModel extends GetxController {
   HomeViewModel(this.service);
 
   Future<void> getCurrencyPrice() async {
-    final String url = Urls.baseUrl + await ApiKeys.getApiKey();
-    final res = await service.getRequest(url);
+    final res = await service.getRequest(Urls.baseUrl);
 
     if (res != null) {
       Map<String, dynamic> decoded = jsonDecode(res.httpResponse!.body);
       _priceModel.clear();
       _cryptoCurrencyModel.clear();
-      for (int index = 0; index < decoded['currency'].length; index++) {
-        _priceModel.add(CurrencyModel.fromJson(decoded['currency'][index]));
-      }
-      for (int index = 0; index < decoded['cryptocurrency'].length; index++) {
-        bool isExsits = CryptoCurrencyImageMap.imageCrypto(
-                decoded['cryptocurrency'][index]['symbol']
-                    .toString()
-                    .toLowerCase())
-            .isValid;
-        String imagePath = CryptoCurrencyImageMap.imageCrypto(
-                decoded['cryptocurrency'][index]['symbol']
-                    .toString()
-                    .toLowerCase())
-            .value;
-        if (isExsits) {
-          _cryptoCurrencyModel.add(CryptoCurrencyModel.fromJson(
-              decoded['cryptocurrency'][index], imagePath));
-        }
-      }
+      _priceModel.addAll(NerkhsanjParser.parseCurrencies(decoded));
+      _cryptoCurrencyModel.addAll(NerkhsanjParser.parseCryptos(decoded));
       log(_cryptoCurrencyModel.length.toString());
       _saveAndUpdateWidgetData();
       UserNotify.showSnackBar(

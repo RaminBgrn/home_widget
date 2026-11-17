@@ -40,7 +40,17 @@ jobs:
       - name: Run tests
         run: flutter test
 
+      - name: Decode release keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+
       - name: Build release APK
+        env:
+          KEYSTORE_PATH: ${{ runner.temp }}/release.keystore
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: flutter build apk --release
 
       - name: Prepare release files
@@ -60,4 +70,5 @@ jobs:
             Release built by GitHub Actions.
 
             - Live prices now come from the free Nerkhsanj API (BrsApi was discontinued) — see #1
-            - APK is signed with the debug key (same as previous unsigned builds); not for Play Store upload.
+            - Home-screen widget fix: exported receiver + robust parsing — see #4
+            - Signed with the project's fixed release key (since v1.0.2), so updates install over previous versions — see #5

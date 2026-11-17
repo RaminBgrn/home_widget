@@ -22,7 +22,7 @@
         android:label="widget_home" >
         <receiver
             android:name=".DollarPrice"
-            android:exported="false" >
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
